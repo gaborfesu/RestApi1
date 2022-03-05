@@ -24,4 +24,15 @@ class AuthController extends Controller
         ];
         return response($resopons,201);
     }
+    public function login(Request $request){
+        if(Auth::attempt(["name"=>$request->name,"password"=>$request->password])){
+            $authUser = Auth::user();
+            $success["token"] =$authUser->createToken("Gabortoken")->plainTextTokeb
+            $success["name"] =$authUser->name;
+            return response($success);
+        }else{
+            return response("Hiba! Sikertelen bejelentkezés",["error"=>"Hibás adatok" ]);
+        } 
+
+    }
 }
