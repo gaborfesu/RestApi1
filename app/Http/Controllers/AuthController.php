@@ -27,7 +27,7 @@ class AuthController extends Controller
     public function login(Request $request){
         if(Auth::attempt(["name"=>$request->name,"password"=>$request->password])){
             $authUser = Auth::user();
-            $success["token"] =$authUser->createToken("Gabortoken")->plainTextTokeb
+            $success["token"] =$authUser->createToken("Gabortoken")->plainTextToken;
             $success["name"] =$authUser->name;
             return response($success);
         }else{
