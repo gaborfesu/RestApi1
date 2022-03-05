@@ -32,8 +32,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //         'salary' => 2873000
 //     ]);
 // });
-Route::resource('/employees', EmployeeController::class);
-Route::get('/employees/search/{name}', [EmployeeController::class, 'search']);
+// Route::resource('/employees', EmployeeController::class);
+// Route::get('/employees/search/{name}', [EmployeeController::class, 'search']);
 // Route::get('/products',[EmployeeController::class,'index']);
 // Route::post('/employees',[EmployeeController::class,'store']);
+Route::resource('/employees', EmployeeController::class);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/employees/search/{name}', [EmployeeController::class, 'search']);
+});
  
