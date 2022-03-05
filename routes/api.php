@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,5 +40,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::resource('/employees', EmployeeController::class);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/employees/search/{name}', [EmployeeController::class, 'search']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
- 
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);

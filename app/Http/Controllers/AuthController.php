@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+ 
+use App\Models\User;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\facades\Auth;
 
 class AuthController extends Controller
 {
-    public function regsiter(Request $request){
+    public function register(Request $request){
         $fields = $request->validate([
             'name' => 'required|string',
             'email'=>'required|string|unique:users,email',
